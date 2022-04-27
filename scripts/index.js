@@ -1,8 +1,8 @@
-let popupOpenButton = document.querySelector('.profile__button-edit');
-let popupForm = document.querySelector('.popup__form');
-let popupCloseButton = document.querySelector('.popup__button-close');
-let popupButtonSave = document.querySelector('.popup__button-save');
-let popup = document.querySelector('.popup');
+const popupOpenButton = document.querySelector('.profile__button-edit');
+const popupForm = document.querySelector('.popup__form');
+const popupCloseButton = document.querySelector('.popup__button-close');
+const popupButtonSave = document.querySelector('.popup__button-save');
+const popup = document.querySelector('.popup');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let popupInputName = document.querySelector('.popup__input-name');
@@ -21,7 +21,7 @@ popupCloseButton.addEventListener('click', function() {
 // 2 При открытии формы поля «Имя» и «О себе»
 // заполнены теми значениями, которые отображаются на странице
 
-document.querySelector('.profile__button-edit').addEventListener('click', profileEditButtonClick);
+popupOpenButton.addEventListener('click', profileEditButtonClick);
 
 function profileEditButtonClick() {
   popupInputName.value = profileTitle.textContent;
@@ -34,15 +34,9 @@ function profileEditButtonClick() {
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
-  popupButtonSave.addEventListener('click', function() {
-    profileTitle.textContent = popupInputName.value;
-    profileSubtitle.textContent = popupInputDescription.value;
-    popup.classList.toggle('popup_opened');
-  })
-
+  profileTitle.textContent = popupInputName.value;
+  profileSubtitle.textContent = popupInputDescription.value;
+  popup.classList.toggle('popup_opened');
 }
 popupForm.addEventListener('submit', formSubmitHandler);
-
-
-
-
+popupButtonSave.addEventListener('click', formSubmitHandler);
