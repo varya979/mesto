@@ -6,5 +6,6 @@
   grid-template-columns: max-content min-content;
   grid-template-rows: max-content min-content;
   gap: 0;
+  position: relative;
 }
 

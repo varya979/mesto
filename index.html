@@ -27,60 +27,33 @@
       <img class="profile__button-add-image" src="./images/profile__button-add.svg" alt="Знак плюс">
     </button>
   </section>
+
+
   <ul class="elements">
-    <li class="element">
-      <img class="element__image" src="./images/1.jpg" alt=" Фото архитектуры г.Карачаевска">
-      <div class="element__info">
-        <p class="element__title">Коралловые рифы</p>
-        <button class="element__button opacity" type="button"></button>
-        <!-- для кнопки "Лайк" создан, но не подключен, модификатор element__button_active -->
-      </div>
-    </li>
-    <li class="element">
-      <img class="element__image" src="./images/2.jpg" alt=" Фото горы Эльбрус">
-      <div class="element__info">
-        <h2 class="element__title">Аквалангист</h2>
-        <button class="element__button opacity" type="button"></button>
-      </div>
-    </li>
-    <li class="element">
-      <img class="element__image" src="./images/3.jpg" alt=" Фото гор г.Домбай">
-      <div class="element__info">
-        <h2 class="element__title">Морская черепаха</h2>
-        <button class="element__button opacity" type="button"></button>
-      </div>
-    </li>
-    <li class="element">
-      <img class="element__image" src="./images/4.jpg" alt=" Фото горы Эльбрус">
-      <div class="element__info">
-        <h2 class="element__title">Глубь океана</h2>
-        <button class="element__button opacity" type="button"></button>
-      </div>
-    </li>
-    <li class="element">
-      <img class="element__image" src="./images/5.jpg" alt=" Фото гор г.Домбай">
-      <div class="element__info">
-        <h2 class="element__title">Водолаз</h2>
-        <button class="element__button opacity" type="button"></button>
-      </div>
-    </li>
-    <li class="element">
-      <img class="element__image" src="./images/6.jpg" alt=" Фото архитектуры г.Карачаевска">
-      <div class="element__info">
-        <h2 class="element__title">Природа океана</h2>
-        <button class="element__button opacity" type="button"></button>
-      </div>
-    </li>
   </ul>
+
+
   <footer class="footer">
     <p class="footer__item" lang="en">&COPY; 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+
+  <template class="element-template">
+    <li class="element">
+      <img class="element__image" src="#" alt="#">
+      <button class="element__button-delete opacity" type="button"></button>
+      <div class="element__info">
+        <p class="element__title"></p>
+        <button class="element__button-like opacity" type="button"></button>
+      </div>
+    </li>
+  </template>
+
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__button-close opacity" type="button">
         <img class="popup__button-close-image" src="./images/popup__button-close.svg" alt="рисунок 'крестик' закрытия окна">
       </button>
-      <form class="popup__form" name="popup-profile-edit" action="#" method="post">
+      <form class="popup__form" name="popup-profile" action="#" method="post">
         <h3 class="popup__title">Редактировать профиль</h3>
         <fieldset class="popup__field-name">
           <input class="popup__input-name" type="text">
@@ -92,7 +65,37 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_card">
+    <div class="popup__container">
+      <button class="popup__button-close opacity" type="button">
+        <img class="popup__button-close-image" src="./images/popup__button-close.svg" alt="рисунок 'крестик' закрытия окна">
+      </button>
+      <form class="popup__form" name="popup-card" action="#" method="post">
+        <h3 class="popup__title">Новое место</h3>
+        <fieldset class="popup__field-name">
+          <input class="popup__input-name" name="name" type="text" placeholder="Название">
+        </fieldset>
+        <fieldset class="popup__field-description">
+          <input class="popup__input-description" name="link" type="text" placeholder="Ссылка на картинку">
+        </fieldset>
+        <button class="popup__button-save opacity" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_picture">
+    <div class="popup__picture-container">
+      <button class="popup__button-close opacity" type="button">
+        <img class="popup__button-close-image" src="./images/popup__button-close.svg" alt="рисунок 'крестик' закрытия окна">
+      </button>
+      <figure class="popup__figure">
+        <img class="popup__image" src="#" alt="#">
+        <figcaption class="popup__figcaption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
   <script src="./scripts/index.js"></script>
 </body>
 </html>
-

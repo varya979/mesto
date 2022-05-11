@@ -7,3 +7,7 @@
   grid-column-end: 3;
   margin: 0;
 }
+
+.element__image:hover {
+  cursor: pointer;
+}
