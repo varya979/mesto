@@ -3,7 +3,6 @@
   width: 358px;
   border: 0;
   border-radius: 2px;
-  margin: 0;
   padding: 0;
   background-color: #000;
   display: flex;
@@ -14,6 +13,13 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
+  margin: 19px 0 0;
+}
+
+.popup__button-save:hover {
+  opacity: 0.6;
+  transition: opacity linear;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 670px) {
@@ -22,5 +28,6 @@
     min-height: 46px;
     font-size: 14px;
     line-height: 16.94px;
+    margin: 15px 0 0;
   }
 }
