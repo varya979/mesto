@@ -72,7 +72,6 @@ const toggleButtonState = (inputList, buttonElement, objectKey) => {
 };
 
 
-
 // Пусть слушатель событий добавится всем полям ввода внутри формы. Создадим функцию setEventListener.
 
 const setEventListeners = (formElement, objectKey) => {
