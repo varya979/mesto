@@ -55,7 +55,6 @@ const hasInvalidInput = (inputList) => {
 };
 
 
-
 // Функция hasInvalidInput только проверяет наличие невалидного поля и сигнализирует, можно ли разблокировать кнопку сабмита. Но она ничего не делает с самой кнопкой «Отправить».
 // Для стилизации нужна функция toggleButtonState. Именно она отключает и включает кнопку. Для этого функция hasInvalidInput проверяет валидность полей и возвращает true или false. На их основе toggleButtonState меняет состояние кнопки.
 // Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять.
@@ -115,7 +114,6 @@ const enableValidation = (objectKey) => {
 };
 
 
-
 // Вызовем функцию.
 enableValidation({
   formSelector: '.popup__form',
@@ -125,3 +123,5 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input_error_active'
 });
+
+

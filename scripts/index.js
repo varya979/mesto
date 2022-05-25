@@ -21,6 +21,11 @@ const picturePopupCloseBtn = picturePopup.querySelector('.popup__button-close');
 const picturePopupFigcaption = picturePopup.querySelector('.popup__figcaption');
 const picturePopupImage = picturePopup.querySelector('.popup__image');
 
+const popups = Array.from(document.querySelectorAll('.popup'));
+const popupSaveBtns = Array.from(document.querySelectorAll('.popup__button-save'));
+const popupInputErrors = Array.from(document.querySelectorAll('.popup__input-error'));
+const popupInputs = Array.from(document.querySelectorAll('.popup__input'));
+
 const initialCards = [
   {
     name: 'Блюдо с едой',
@@ -50,20 +55,67 @@ const initialCards = [
 
 const openPopup = (popupAny) => {
   popupAny.classList.add('popup_opened');
-}
+};
 
 const closePopup = (popupAny) => {
   popupAny.classList.remove('popup_opened');
 };
 
+//функция деактивации кнопки submit.
+const disablePopupSaveBtn = () => {
+  popupSaveBtns.forEach((popupSaveBtn) => {
+    popupSaveBtn.classList.add('popup__button-save_inactive');
+  });
+};
+
+//функция очищения ошибок инпутов.
+const clearPopupInputError = () => {
+  popupInputErrors.forEach((popupInputError) => {
+    popupInputError.textContent = '';
+  });
+};
+
+//функция удаления красного подчеркивания ошибки инпутов.
+const clearPopupInputErrorRedBorder = () => {
+  popupInputs.forEach((popupInput) => {
+    popupInput.classList.remove('popup__input_type_error');
+  });
+};
+
+//функция закрытия попапа нажатием на оверлей
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+      if(evt.target == evt.currentTarget) {
+        closePopup(popup);
+      };
+    });
+  });
+
+//функция закрытия попапа нажатием на кнопку ESC.
+popups.forEach((popup) => {
+  popup.addEventListener('keydown', (evt) => {
+    if (evt.keyCode === 27) {
+      closePopup(popup);
+    };
+  });
+});
+
+
+
+
+
+
 profilePopupOpenBtn.addEventListener('click', () => {
   profilePopupInputName.value = profilePopupTitle.textContent;
   profilePopupInputDescription.value = profilePopupDescription.textContent;
+  disablePopupSaveBtn();
   openPopup(profilePopup);
 });
 
 profilePopupCloseBtn.addEventListener('click', () => {
   closePopup(profilePopup);
+  clearPopupInputError();
+  clearPopupInputErrorRedBorder();
 });
 
 const editProfilePopupForm = (evt) => {
@@ -71,7 +123,8 @@ const editProfilePopupForm = (evt) => {
   profilePopupTitle.textContent = profilePopupInputName.value;
   profilePopupDescription.textContent = profilePopupInputDescription.value;
   closePopup(profilePopup);
-}
+};
+
 profilePopupForm.addEventListener('submit', editProfilePopupForm);
 
 const deleteCard = (evt) => {
@@ -126,11 +179,14 @@ initialCards.forEach(({ link, name }) => {
 
 cardPopupOpenBtn.addEventListener('click', () => {
   cardPopupForm.reset();
+  disablePopupSaveBtn();
   openPopup(cardPopup);
 });
 
 cardPopupCloseBtn.addEventListener('click', () => {
   closePopup(cardPopup);
+  clearPopupInputError();
+  clearPopupInputErrorRedBorder();
 });
 
 cardPopupForm.addEventListener('submit', (evt) => {
