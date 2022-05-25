@@ -11,7 +11,6 @@ const showInputError = (formElement, inputElement, errorMessage, objectKey) => {
 };
 
 
-
 // Функция, которая удаляет класс с ошибкой.
 const hideInputError = (formElement, inputElement, objectKey) => {
   // Находим элемент ошибки.
@@ -22,7 +21,6 @@ const hideInputError = (formElement, inputElement, objectKey) => {
   // Очистим ошибку.
   errorElement.textContent = '';
 };
-
 
 
 // Функция, которая проверяет валидность поля.
@@ -39,7 +37,6 @@ const checkInputValidity = (formElement, inputElement, objectKey) => {
     hideInputError(formElement, inputElement, objectKey);
   }
 };
-
 
 
 // Сейчас функция checkInputValidity валидирует только один input. Но нужно проверить все поля, чтобы настроить статус кнопки. Если все поля валидны — активировать кнопку, если хотя бы одно нет — заблокировать.
@@ -95,7 +92,6 @@ const setEventListeners = (formElement, objectKey) => {
 };
 
 
-
 // Добавление обработчиков всем формам. Объявим функцию enableValidation, которая найдёт и переберёт все формы на странице.
 const enableValidation = (objectKey) => {
   // Найдём все формы с указанным классом в DOM, сделаем из них массив методом Array.from.
@@ -114,7 +110,7 @@ const enableValidation = (objectKey) => {
 };
 
 
-// Вызовем функцию.
+// Вызовем функцию enableValidation.
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

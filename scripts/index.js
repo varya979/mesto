@@ -28,61 +28,65 @@ const popupInputs = Array.from(document.querySelectorAll('.popup__input'));
 
 const initialCards = [
   {
-    name: 'Блюдо с едой',
-    link: 'https://images.pexels.com/photos/3659862/pexels-photo-3659862.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    name: 'Шум волн',
+    link: 'https://images.pexels.com/photos/1089168/pexels-photo-1089168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   },
   {
-    name: 'Томаты и мята',
-    link: 'https://images.pexels.com/photos/6555535/pexels-photo-6555535.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    name: 'Первый снег',
+    link: 'https://images.pexels.com/photos/752718/pexels-photo-752718.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   },
   {
-    name: 'Специи',
-    link: 'https://images.pexels.com/photos/1109197/pexels-photo-1109197.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    name: 'Путешествия',
+    link: 'https://images.pexels.com/photos/3756167/pexels-photo-3756167.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   },
   {
-    name: 'Азиатское блюдо',
-    link: 'https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    name: 'Чашка горячего кофе',
+    link: 'https://images.pexels.com/photos/3649498/pexels-photo-3649498.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   },
   {
-    name: 'Форель с гарниром',
-    link: 'https://images.pexels.com/photos/3655916/pexels-photo-3655916.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    name: 'Родной человечек',
+    link: 'https://images.pexels.com/photos/1683975/pexels-photo-1683975.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   },
   {
-    name: 'Бокал красного вина',
-    link: 'https://images.pexels.com/photos/3044/restaurant-love-romantic-dinner.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    name: 'Солнечная весна',
+    link: 'https://images.pexels.com/photos/1035342/pexels-photo-1035342.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
   }
 ];
 
+// универсальная функция открытия попапа.
 const openPopup = (popupAny) => {
   popupAny.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByKeyPressEsc);
 };
-
+// универсальная функция закрытия попапа.
 const closePopup = (popupAny) => {
   popupAny.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByKeyPressEsc);
 };
 
-//функция деактивации кнопки submit.
+//универсальная функция деактивации кнопки submit.
 const disablePopupSaveBtn = () => {
   popupSaveBtns.forEach((popupSaveBtn) => {
     popupSaveBtn.classList.add('popup__button-save_inactive');
   });
 };
 
-//функция очищения ошибок инпутов.
+//универсальная функция очищения ошибок инпутов.
 const clearPopupInputError = () => {
   popupInputErrors.forEach((popupInputError) => {
     popupInputError.textContent = '';
   });
 };
 
-//функция удаления красного подчеркивания ошибки инпутов.
+// универсальная функция удаления красного подчеркивания ошибки инпутов.
 const clearPopupInputErrorRedBorder = () => {
   popupInputs.forEach((popupInput) => {
     popupInput.classList.remove('popup__input_type_error');
   });
 };
 
-//функция закрытия попапа нажатием на оверлей
+// универсальная функция закрытия попапа нажатием на оверлей.
+const closePopupByClickOnOverlay = () => {
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
       if(evt.target == evt.currentTarget) {
@@ -90,21 +94,19 @@ popups.forEach((popup) => {
       };
     });
   });
+};
 
-//функция закрытия попапа нажатием на кнопку ESC.
-popups.forEach((popup) => {
-  popup.addEventListener('keydown', (evt) => {
-    if (evt.keyCode === 27) {
-      closePopup(popup);
-    };
-  });
-});
+closePopupByClickOnOverlay();
 
+//универсальная функция закрытия попапа нажатием на кнопку ESC.
+const closePopupByKeyPressEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  };
+};
 
-
-
-
-
+// Открытие попапа Profile.
 profilePopupOpenBtn.addEventListener('click', () => {
   profilePopupInputName.value = profilePopupTitle.textContent;
   profilePopupInputDescription.value = profilePopupDescription.textContent;
@@ -112,12 +114,14 @@ profilePopupOpenBtn.addEventListener('click', () => {
   openPopup(profilePopup);
 });
 
+// Закрытия попапа Profile.
 profilePopupCloseBtn.addEventListener('click', () => {
   closePopup(profilePopup);
   clearPopupInputError();
   clearPopupInputErrorRedBorder();
 });
 
+// Нажатие на кнопку редактирования попапа Profile.
 const editProfilePopupForm = (evt) => {
   evt.preventDefault();
   profilePopupTitle.textContent = profilePopupInputName.value;
@@ -127,23 +131,26 @@ const editProfilePopupForm = (evt) => {
 
 profilePopupForm.addEventListener('submit', editProfilePopupForm);
 
+// Функция удаления карточки в попапе Card.
 const deleteCard = (evt) => {
   evt.target.closest('.element').remove();
 };
 
+// Функция лайка карточки в попапе Card.
 const likeCard = (evt) => {
   evt.target.classList.toggle('element__button-like_active');
 };
-
+// Открытие попапа Picture.
 const openPicturePopup = () => {
   openPopup(picturePopup);
 };
 
+// Закрытие попапа Picture.
 picturePopupCloseBtn.addEventListener('click', () => {
   closePopup(picturePopup);
 });
 
-
+// Функция создания карточки.
 const createCard = ({link, name}) => {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const cardImg = cardElement.querySelector('.element__image');
@@ -169,26 +176,31 @@ const createCard = ({link, name}) => {
   return cardElement;
 };
 
+//  Функция отрисовки карточки. Она принимает элемент куда вставлять отрисованный элемент, а также, сам элемент, который нужно отрисовать.
 const renderCard = (cardWrapper, { link, name }) => {
   cardWrapper.append(createCard({ link, name }));
 };
 
+// Вызываем функцию отрисовки карточки. И передаем куда хотим отрисовать и что хотим отрисовать.
 initialCards.forEach(({ link, name }) => {
   renderCard(cardWrapper, { link, name });
 });
 
+// Открытие попапа Card
 cardPopupOpenBtn.addEventListener('click', () => {
   cardPopupForm.reset();
   disablePopupSaveBtn();
   openPopup(cardPopup);
 });
 
+// Закрытие попапа Card
 cardPopupCloseBtn.addEventListener('click', () => {
   closePopup(cardPopup);
   clearPopupInputError();
   clearPopupInputErrorRedBorder();
 });
 
+// Нажатие на кнопку создания карточки, которое создает карточку и закрывает попап.
 cardPopupForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const newCard = createCard ({
