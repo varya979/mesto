@@ -61,9 +61,13 @@ const toggleButtonState = (inputList, buttonElement, objectKey) => {
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной.
     buttonElement.classList.add(objectKey.inactiveButtonClass);
+    // Чтобы не было возможности добавлять пустые карточки по нажатию на Enter при визуально заблокированной кнопке нужно добавить атрибут Disable.
+    buttonElement.setAttribute('disabled', true);
   } else {
     // иначе сделай кнопку активной.
     buttonElement.classList.remove(objectKey.inactiveButtonClass);
+    // а здесь атрибут удалить.
+    buttonElement.removeAttribute('disabled', true);
   }
 };
 
@@ -99,10 +103,7 @@ const enableValidation = (objectKey) => {
 
   // Переберём полученную коллекцию.
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      // У каждой формы отменим стандартное поведение.
-      evt.preventDefault();
-    });
+    // У каждой формы нужно отменить стандартное поведение. Я сделала это в файле index.js, поэтому здесь не дублирую.
 
     // Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы.
     setEventListeners(formElement, objectKey);
