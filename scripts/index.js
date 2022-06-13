@@ -2,7 +2,7 @@
 // импорты
 
 import { initialCards } from './utils/constants.js';
-import Card from './card.js';
+import Card from './Сard.js';
 import { validationConfig } from './utils/constants.js';
 import FormValidator from './FormValidator.js';
 
