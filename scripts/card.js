@@ -18,7 +18,7 @@ export default class Card {
 
   _getTemplate() {
     const cardElement = document
-    .querySelector('.element-template')
+    .querySelector(this._cardSelector)
     .content
     .querySelector('.element')
     .cloneNode(true);
@@ -66,10 +66,6 @@ export default class Card {
   _setEventListeners() {
     this._image.addEventListener('click', () => {
       this._handleOpenPopup();
-    });
-
-    picturePopupCloseBtn.addEventListener('click', () => {
-      this._handleClosePopup();
     });
 
     this._cardLikeBtn.addEventListener('click', () => {

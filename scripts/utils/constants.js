@@ -24,3 +24,12 @@ export const initialCards = [
     link: 'https://images.pexels.com/photos/1035342/pexels-photo-1035342.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
   }
 ];
+
+export const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input_error_active'
+};
