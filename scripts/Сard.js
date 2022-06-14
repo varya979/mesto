@@ -1,10 +1,8 @@
 import {
   picturePopup,
-  picturePopupCloseBtn,
   picturePopupFigcaption,
   picturePopupImage,
   openPopup,
-  closePopup,
 } from './index.js';
 
 
@@ -48,10 +46,6 @@ export default class Card {
     picturePopupFigcaption.textContent = this._name;
 
     openPopup(picturePopup);
-  };
-
-  _handleClosePopup() {
-    closePopup(picturePopup);
   };
 
   _toggleLikeCard() {
