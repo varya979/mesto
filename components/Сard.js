@@ -2,14 +2,15 @@ import {
   picturePopup,
   picturePopupFigcaption,
   picturePopupImage,
-  openPopup,
-} from './index.js';
+} from '../utils/constants.js';
+
+import { openPopup } from '../utils/utils.js';
 
 
 export default class Card {
-  constructor (data, cardSelector) {
-    this._link = data.link;
-    this._name = data.name;
+  constructor ({link, name}, cardSelector) {
+    this._link = link;
+    this._name = name;
     this._cardSelector = cardSelector;
   };
 
