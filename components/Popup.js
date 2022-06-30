@@ -9,13 +9,13 @@ export default class Popup {
   };
 
   // публичный метод открытия попапа
-  openPopup() {
+  open() {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose)
   };
 
   // публичный метод закрытия попапа
-  closePopup() {
+  close() {
     this._popup.classList.remove('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
   };
@@ -23,21 +23,21 @@ export default class Popup {
   // приватный метод закрытия попапа клавишей Esc
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      this.closePopup();
+      this.close();
     };
   };
 
   // приватный метод закрытия попапа нажатием на оверлей
   _handleOverlayClose(evt) {
     if (evt.target == evt.currentTarget) {
-      this.closePopup();
+      this.close();
     };
    };
 
   // приватный метод закрытия попапа нажатием на кнопку закрытия
   _handleClickClose(evt) {
     if (evt.target.classList.contains('popup__button-close')) {
-      this.closePopup();
+      this.close();
     };
   };
 

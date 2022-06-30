@@ -7,6 +7,7 @@ import { validationConfig } from '../utils/constants.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 import {
   profilePopup,
@@ -50,7 +51,7 @@ const createCard = (item) => {
     item,
     '.element-template',
     { handleCardClick: (item) => {
-        picturePopup.openPopup(item)
+        picturePopup.open(item)
       }
     },
     );
@@ -120,7 +121,7 @@ profilePopupOpenBtn.addEventListener('click', () => {
   profilePopupFormValidator.clearForm();
   profilePopupInputName.value = profilePopupTitle.textContent;
   profilePopupInputDescription.value = profilePopupDescription.textContent;
-  openPopup(profilePopup);
+  open(profilePopup);
 });
 
 profilePopupCloseBtn.addEventListener('click', () => {
@@ -131,7 +132,7 @@ profilePopupForm.addEventListener('submit', editProfilePopupForm);
 
 cardPopupOpenBtn.addEventListener('click', () => {
   cardPopupFormValidator.clearForm();
-  openPopup(cardPopup);
+  open(cardPopup);
 });
 
 
