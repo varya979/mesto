@@ -6,6 +6,7 @@ import Card from '../components/Сard.js';
 import { validationConfig } from '../utils/constants.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
 
 import {
   profilePopup,
@@ -33,20 +34,26 @@ import {
   popups,
   } from '../utils/constants.js';
 
-  import {
-    closePopupByKeyPressEsc,
-    closePopupByClickOnOverlay,
-    openPopup,
-    closePopup,
-  } from '../utils/utils.js';
-
+  // import {
+  //   closePopupByKeyPressEsc,
+  //   closePopupByClickOnOverlay,
+  //   openPopup,
+  //   closePopup,
+  // } from '../utils/utils.js';
 
 // функции
 
 
 /* создать новую карточку с помощью класса Card */
 const createCard = (item) => {
-  const card = new Card(item, '.element-template');
+  const card = new Card (
+    item,
+    '.element-template',
+    { handleCardClick: (item) => {
+        picturePopup.openPopup(item)
+      }
+    },
+    );
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -106,7 +113,7 @@ const editProfilePopupForm = (evt) => {
 };
 
 
-closePopupByClickOnOverlay();
+// closePopupByClickOnOverlay();
 
 
 profilePopupOpenBtn.addEventListener('click', () => {
