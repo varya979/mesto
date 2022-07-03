@@ -1,3 +1,5 @@
+import './index.css';
+
 import Card from "../components/Сard.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -16,7 +18,6 @@ import {
 } from '../utils/constants.js';
 
 import { validationConfig } from "../utils/constants.js";
-
 
 // создает новую карточку с помощью класса Card
 const createCard = (data) => {
@@ -110,49 +111,3 @@ const cardPopupFormValidator = new FormValidator(validationConfig, cardPopupForm
 
 profilePopupFormValidator.enableValidation();
 cardPopupFormValidator.enableValidation();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// cardPopupOpenBtn.addEventListener('click', () => {
-//   cardPopupFormValidator.clearForm();
-//   open(cardPopup);
-// });
-
-
-
-
-
-
-// const cardPopup = new PopupWithForm({
-//   popupSelector: '.popup_type_card',
-//   handleFormSubmit: (formData) => {
-//     const card = createCard(formData);
-//     cardsList.addItem(card);
-
-//     cardPopup.close();
-//    }
-// });
-
-
-// cardPopup.setEventListeners();
-// picturePopup.setEventListeners();
