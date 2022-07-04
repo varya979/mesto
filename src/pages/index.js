@@ -68,11 +68,12 @@ const profilePopup = new PopupWithForm({
 
  // открытие попапа profile
  profilePopupOpenBtn.addEventListener('click', () => {
-  profilePopupFormValidator.clearForm();
   // getUserInfo подставляет данные пользователя в форму
   const profileData = profileInfo.getUserInfo();
   profilePopupInputName.value = profileData.name;
   profilePopupInputDescription.value = profileData.description;
+  // чтобы кнопка была активной при открытии попапа и при сразу заполненных валидных данных перенесла resetValidation после ввода данных
+  profilePopupFormValidator.resetValidation();
   profilePopup.open();
 });
 
@@ -92,7 +93,7 @@ const cardPopup = new PopupWithForm({
 
 // открытие попапа Card
 cardPopupOpenBtn.addEventListener('click', () => {
-  cardPopupFormValidator.clearForm();
+  cardPopupFormValidator.resetValidation();
   cardPopup.open();
 })
 

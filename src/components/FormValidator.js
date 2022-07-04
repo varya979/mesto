@@ -42,12 +42,11 @@ export default class FormValidator {
   // Если все поля валидны — активировать кнопку, если хотя бы одно нет — заблокировать.
   // Для этого создадим функцию hasInvalidInput. Она принимает массив полей формы и возвращает true,
   // если в нём хотя бы одно поле не валидно, и false, если все валидны.
-  _hasInvalidInput = (inputList) => {
+  _hasInvalidInput = () => {
     // проходим по этому массиву методом some.
-    return inputList.some((inputElement) => {
+    return this._inputList.some((inputElement) => {
       // Если поле не валидно, колбэк вернёт true. Обход массива прекратится и вся функция hasInvalidInput вернёт true.
       return !inputElement.validity.valid;
-
     })
   };
 
@@ -56,64 +55,48 @@ export default class FormValidator {
   // Для стилизации нужна функция toggleButtonState. Именно она отключает и включает кнопку.
   // Для этого функция hasInvalidInput проверяет валидность полей и возвращает true или false.
   // На их основе toggleButtonState меняет состояние кнопки.
-  _toggleButtonState = (inputList, buttonElement) => {
+  _toggleButtonState = () => {
     // Если есть хотя бы один невалидный инпут.
-    if (this._hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput(this._inputList)) {
        // сделай кнопку неактивной.
-      buttonElement.classList.add(this._settings.inactiveButtonClass);
+      this._buttonElement.classList.add(this._settings.inactiveButtonClass);
       // Чтобы не было возможности добавлять пустые карточки по нажатию на Enter при визуально заблокированной кнопке нужно добавить атрибут Disable.
-      buttonElement.setAttribute('disabled', true);
+      this._buttonElement.setAttribute('disabled', true);
       // иначе сделай кнопку активной.
     } else {
-      buttonElement.classList.remove(this._settings.inactiveButtonClass);
+      this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
       // а здесь атрибут удалить.
-      buttonElement.removeAttribute('disabled', true);
+      this._buttonElement.removeAttribute('disabled', true);
     }
   };
 
   // Пусть слушатель событий добавится всем полям ввода внутри формы. Создадим функцию setEventListener.
-  setEventListeners = () => {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._settings.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._settings.submitButtonSelector);
+  _setEventListeners = () => {
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._settings.inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._settings.submitButtonSelector);
     // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля.
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState();
 
-
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
        // каждому полю добавим обработчик события input.
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       });
     });
   };
 
-  clearForm = () => {
-    this._formElement.reset();
-    // блокировка кнопки submit
-    const popupSaveBtns = Array.from(this._formElement.querySelectorAll('.popup__button-save'));
-    popupSaveBtns.forEach((popupSaveBtn) => {
-      popupSaveBtn.classList.add('popup__button-save_inactive');
-      popupSaveBtn.setAttribute('disabled', true);
+  resetValidation() {
+    // управляем кнопкой
+    this._toggleButtonState();
+    // очищаем ошибки
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
     });
-
-    // очищение ошибок инпутов
-    const popupInputsErrors = Array.from(this._formElement.querySelectorAll('.popup__input-error'));
-
-    popupInputsErrors.forEach((popupInputError) => {
-      popupInputError.textContent = '';
-    });
-
-    // удаление красного подчеркивания ошибки инпутов
-    const popupInputsErrorsRedBorder = Array.from(this._formElement.querySelectorAll('.popup__input'));
-
-    popupInputsErrorsRedBorder.forEach((popupInputErrorRedBorder) => {
-      popupInputErrorRedBorder.classList.remove('popup__input_type_error');
-    });
-  };
+  }
 
    // Добавление обработчиков всем формам
   enableValidation = () => {
-    this.setEventListeners();
+    this._setEventListeners();
   };
 }
