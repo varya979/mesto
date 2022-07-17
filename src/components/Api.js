@@ -9,7 +9,7 @@ export default class Api {
        /** res.json возвращает объект ответа с сервера в виде ппромиса. Из него можно достать нужные данные */
       return res.json();
     }
-    return Promise.reject(res.status);
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   // загрузка информации о пользователе с сервера
