@@ -7,35 +7,43 @@
   <meta name="description" content="фотохостинг">
   <meta name="keywords" content="фотохостинг, фото, лайк">
   <meta name="author" content="Варвара">
-<title>Место</title>
+  <title>Место</title>
 </head>
 <body class="page">
+
 
   <header class="header">
     <img class="header__logo" src="<%=require('./images/header__logo.svg')%>" alt="логотип Место">
     <!-- белому логотипу создан, но не подключен, модификатор header__logo_white -->
   </header>
 
+
   <section class="profile">
-    <img class="profile__avatar" src="<%=require('./images/profile__avatar.jpg')%>" alt=" Фото Жак-Ив Кусто">
+    <div class="profile__avatar-container">
+      <button class="profile__avatar-edit-button" type="button"></button>
+      <img class="profile__avatar" src="" alt="Аватар пользователя">
+    </div>
     <div class="profile__info">
-      <h1 class="profile__title">Варвара</h1>
+      <h1 class="profile__title"></h1>
       <button class="profile__button-edit opacity" type="button">
         <img class="profile__button-edit-image" src="<%=require('./images/profile__button-edit.svg')%>" alt="Рисунок карандаша">
       </button>
-      <p class="profile__subtitle">То, что вызывает у меня улыбку</p>
+      <p class="profile__subtitle"></p>
     </div>
     <button class="profile__button-add opacity" type="button">
       <img class="profile__button-add-image" src="<%=require('./images/profile__button-add.svg')%>" alt="Знак плюс">
     </button>
   </section>
 
+
   <ul class="elements">
   </ul>
+
 
   <footer class="footer">
     <p class="footer__item" lang="en">&COPY; 2020 Mesto Russia</p>
   </footer>
+
 
   <template class="element-template">
     <li class="element">
@@ -43,10 +51,14 @@
       <button class="element__button-delete opacity" type="button"></button>
       <div class="element__info">
         <p class="element__title"></p>
-        <button class="element__button-like opacity" type="button"></button>
+        <div class="element__likes-container">
+          <button class="element__button-like opacity" type="button"></button>
+          <p class="element__count-likes"></p>
+        </div>
       </div>
     </li>
   </template>
+
 
   <div class="popup popup_type_profile">
     <div class="popup__container">
@@ -82,7 +94,7 @@
             minlength="2"
             maxlength="200"
             placeholder="О себе"
-            name="description"
+            name="about"
             required
           />
           <span class="popup__input-error popup__input-error-profile-description"></span>
@@ -91,6 +103,8 @@
       </form>
     </div>
   </div>
+
+
 
   <div class="popup popup_type_card">
     <div class="popup__container">
@@ -113,7 +127,7 @@
             placeholder="Название"
             minlength="2"
             maxlength="30"
-            name="title"
+            name="name"
             required
           />
           <span class="popup__input-error popup__input-error-card-name"></span>
@@ -134,6 +148,7 @@
     </div>
   </div>
 
+
   <div class="popup popup_type_picture">
     <div class="popup__picture-container">
       <button class="popup__button-close opacity" type="button">
@@ -146,8 +161,48 @@
     </div>
   </div>
 
-  <!-- <script type="module" src="./pages/index.js"></script> -->
 
+ <div class="popup popup_type_confirm-delete">
+  <div class="popup__container">
+    <button class="popup__button-close opacity" type="submit">
+      <img class="popup__button-close-image" src="<%=require('./images/popup__button-close.svg')%>" alt="рисунок 'крестик' закрытия окна">
+    </button>
+    <form class="popup__form popup__form_confirm" name="confirm">
+      <h3 class="popup__title popup__title_confirm">Вы уверены?</h3>
+      <button class="popup__button-save" type="submit">Да</button>
+    </form>
+  </div>
+</div>
+
+
+  <div class="popup popup_type_update-avatar">
+    <div class="popup__container">
+      <button class="popup__button-close opacity" type="button">
+        <img class="popup__button-close-image" src="<%=require('./images/popup__button-close.svg')%>" alt="рисунок 'крестик' закрытия окна">
+      </button>
+      <form
+        class="popup__form popup__form_avatar"
+        name="avatar"
+        action="#"
+        method="post"
+        novalidate
+      >
+      <h3 class="popup__title">Обновить аватар</h3>
+      <fieldset class="popup__field">
+        <input
+        id="avatar"
+        class="popup__input"
+        type="url"
+        placeholder="Ссылка на картинку"
+        name="avatar"
+        required
+        />
+        <span class="popup__input-error popup__input-error-avatar"></span>
+      </fieldset>
+      <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 </html>
-

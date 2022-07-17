@@ -1,23 +1,23 @@
 // отвечает за отрисовку элементов на странице
 export default class Section {
-  constructor ({ items, renderer }, containerSelector) {
-    // items - массив данных, добавляемый на страницу при создании класса
-    this._initialArray = items;
+  constructor ({renderer}, containerSelector) {
     // renderer - функция колбэк, отвечающая за cоздание экземпляров карточек и их вставку в разметку
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
-
   };
 
   // отвечает за отрисовку всех элементов
-  renderItems() {
-    this._initialArray.forEach(item => {
-      this._renderer(item);
+  renderItems(cards) {
+    cards.forEach(card => {
+      this._renderer(card);
     });
   };
 
-  // принимает element из template и добавляет его в контейнер
-  addItem(element) {
-    this._container.prepend(element);
+  addItemToTheEnd(card) {
+    this._container.append(card);
+  };
+
+  addItemToTheStart(card) {
+    this._container.prepend(card);
   };
 }

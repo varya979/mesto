@@ -9,6 +9,9 @@ export default class PopupWithForm extends Popup {
     this.formElement = this._popup.querySelector('.popup__form');
     // достаём все элементы полей
     this._inputList = this._popup.querySelectorAll('.popup__input');
+    this._submitButton = this._popup.querySelector('.popup__button-save');
+    this._submitButtonValue = this._submitButton.textContent;
+
   };
 
   // приватный метод, который собирает данные всех полей формы.
@@ -22,6 +25,14 @@ export default class PopupWithForm extends Popup {
     // возвращаем объект значений
     return this._formValues;
   };
+
+  renderLoading (isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = 'Сохранение...'
+    } else {
+      this._submitButton = this._submitButtonValue
+    }
+  }
 
   // перезаписывает родительский метод. Метод должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
   setEventListeners() {

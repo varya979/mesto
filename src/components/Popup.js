@@ -2,7 +2,7 @@ export default class Popup {
   constructor (popupSelector) {
     this._popupSelector = popupSelector;
     this._popup = document.querySelector(this._popupSelector);
-    this._popupButtonClose = this._popup.querySelector('.popup__button-close')
+    this._popupButtonClose = this._popup.querySelector('.popup__button-close');
   };
 
   // приватный метод закрытия попапа клавишей Esc

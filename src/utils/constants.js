@@ -1,38 +1,3 @@
-import volny from '../images/volny.jpg';
-import puteshestviya from '../images/puteshestviya.jpg';
-import sneg from '../images/sneg.jpg';
-import rodnoiChelovek from '../images/rodnoiChelovek.jpg';
-import cofee from '../images/cofee.jpg';
-import vesna from '../images/vesna.jpg';
-
-export const initialCards = [
-  {
-    title: 'Солнечная весна',
-    link: vesna
-  },
-  {
-    title: 'Чашка горячего кофе',
-    link: cofee
-  },
-  {
-    title: 'Родной человечек',
-    link: rodnoiChelovek
-  },
-  {
-    title: 'Первый снег',
-    link: sneg
-  },
-  {
-    title: 'Путешествия',
-    link: puteshestviya
-  },
-  {
-    title: 'Шум волн',
-    link: volny
-  },
-
-];
-
 export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -54,3 +19,16 @@ export const cardPopupForm = cardPopup.querySelector('.popup__form');
 export const cardPopupInputImg = cardPopup.querySelector('.popup__input_type_description');
 
 
+export const avatarPopup = document.querySelector('.popup_type_update-avatar');
+export const avatarPopupOpenBtn = document.querySelector('.profile__avatar-edit-button');
+export const avatarPopupForm = avatarPopup.querySelector('.popup__form');
+
+export const options = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-45',
+  headers: {
+    authorization: 'ca894429-dc22-40ac-b610-fafa814a8e0b',
+    /** чтобы сервер понял в чтО ему отправили - отправляем ему тип данных (MIME Types)
+     *  в залоговке Content-Type: application/json - формат JSON */
+    'Content-Type': 'application/json'
+  }
+}
