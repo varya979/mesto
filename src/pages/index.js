@@ -59,12 +59,12 @@ const profilePopup = new PopupWithForm({
     api.setUserInfoToServer(info)
     .then((res) => {
       profileInfo.setUserInfo(res)
+      profilePopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      profilePopup.close();
       profilePopup.renderLoading(false);
     })
   }
@@ -149,12 +149,12 @@ const cardPopup = new PopupWithForm({
     .then((res) => {
       const card = createCard(res);
       cardsList.addItemToTheStart(card);
+      cardPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      cardPopup.close();
       cardPopup.renderLoading(false);
     })
   }
@@ -167,12 +167,12 @@ const avatarPopup = new PopupWithForm({
     api.changeUserAvatar(data)
     .then((res) => {
       profileInfo.setUserAvatar(res)
+      avatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      avatarPopup.close();
       avatarPopup.renderLoading(false);
     })
   }
@@ -194,12 +194,10 @@ const popupConfirmDelete = new PopupWithConfirmation({
     api.deleteCardFromServer(cardId)
     .then(() => {
       patternCard.deleteCard();
+      popupConfirmDelete.close();
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {
-      popupConfirmDelete.close();
     })
   }
 });

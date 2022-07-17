@@ -30,7 +30,7 @@ export default class PopupWithForm extends Popup {
     if (isLoading) {
       this._submitButton.textContent = 'Сохранение...'
     } else {
-      this._submitButton = this._submitButtonValue
+      this._submitButton.textContent = this._submitButtonValue
     }
   }
 
