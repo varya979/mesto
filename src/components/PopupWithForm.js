@@ -2,51 +2,50 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   // кроме селектора попапа принимает в конструктор колбэк сабмита формы
-  constructor ({ popupSelector, handleFormSubmit }) {
+  constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     // функция колбэк, отвечающая за действия, происходящие при отправке формы — добавление данных полей ввода на страницу
     this._handleFormSubmit = handleFormSubmit;
-    this.formElement = this._popup.querySelector('.popup__form');
+    this.formElement = this._popup.querySelector(".popup__form");
     // достаём все элементы полей
-    this._inputList = this._popup.querySelectorAll('.popup__input');
-    this._submitButton = this._popup.querySelector('.popup__button-save');
+    this._inputList = this._popup.querySelectorAll(".popup__input");
+    this._submitButton = this._popup.querySelector(".popup__button-save");
     this._submitButtonValue = this._submitButton.textContent;
-
-  };
+  }
 
   // приватный метод, который собирает данные всех полей формы.
   _getInputValues() {
     // создаём пустой объект
     this._formValues = {};
     // добавляем в этот объект значения всех полей
-    this._inputList.forEach(input => {
+    this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
     });
     // возвращаем объект значений
     return this._formValues;
-  };
+  }
 
-  renderLoading (isLoading) {
+  renderLoading(isLoading) {
     if (isLoading) {
-      this._submitButton.textContent = 'Сохранение...'
+      this._submitButton.textContent = "Сохранение...";
     } else {
-      this._submitButton.textContent = this._submitButtonValue
+      this._submitButton.textContent = this._submitButtonValue;
     }
   }
 
   // перезаписывает родительский метод. Метод должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
   setEventListeners() {
     super.setEventListeners();
-    this.formElement.addEventListener('submit', (evt) => {
+    this.formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       // добавим вызов функции _handleFormSubmit передадим ей объект — результат работы _getInputValues
       this._handleFormSubmit(this._getInputValues());
     });
-  };
+  }
 
   // перезаписывает родительский метод, так как при закрытии попапа форма должна ещё и сбрасываться.
   close() {
     super.close();
     this.formElement.reset();
-  };
+  }
 }
